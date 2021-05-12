@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlPlayer : MonoBehaviour
+public class GameControl : MonoBehaviour
 {
     public float timerHealth = 0f;
     public float timerFood = 0f;
