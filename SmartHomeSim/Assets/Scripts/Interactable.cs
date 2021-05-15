@@ -15,6 +15,12 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isInsideZone && Input.GetMouseButtonDown(1))
+        {
+            Interact();
+            Debug.Log("interact");
+        }
+
     }
 
     private void OnMouseDown() {         //OnMazda
@@ -44,6 +50,6 @@ public class Interactable : MonoBehaviour
 
     public virtual void Interact()
     {
-        Debug.Log("Interaccion");
+        
     }
 }
