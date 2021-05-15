@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BathObject : Interactable
+public class FoodObject : Interactable
 {
     public GameControl player;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +22,9 @@ public class BathObject : Interactable
     {
         if(isInsideZone)            //declarado en Interactable
         {
-            Debug.Log("Bath");
-            player.clean = 100;
-            player.MaxClean();
+            Debug.Log("Food");
+            player.food = 100;
+            player.MaxFood();
         }
     }
-
 }
