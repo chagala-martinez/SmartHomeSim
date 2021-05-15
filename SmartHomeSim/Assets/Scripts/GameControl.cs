@@ -91,4 +91,20 @@ public class GameControl : MonoBehaviour
     {
         player.SetHealth(100);
     }
+
+    public void MaxFood()
+    {
+        player.SetFood(100);
+    }
+
+    public void MaxPlay()
+    {
+        player.SetPlay(100);
+    }
+
+    public void MaxClean()
+    {
+        player.SetClean(100);
+    }
+    
 }
