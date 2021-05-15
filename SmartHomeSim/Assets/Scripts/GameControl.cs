@@ -86,4 +86,9 @@ public class GameControl : MonoBehaviour
             clean = player.GetClean();
         }
     }
+
+    public void MaxHealth()
+    {
+        player.SetHealth(100);
+    }
 }
