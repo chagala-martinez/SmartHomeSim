@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BathObject : Interactable
+public class HungerObject : Interactable
 {
     public GameControl player;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,17 +15,14 @@ public class BathObject : Interactable
     // Update is called once per frame
     void Update()
     {
-        
+        if(isInsideZone && Input.GetMouseButtonDown(1))
+            Interact();
     }
 
-    void OnMouseDown()
+    public override void Interact()
     {
-        if(isInsideZone)            //declarado en Interactable
-        {
-            Debug.Log("Bath");
-            player.clean = 100;
-            player.MaxClean();
-        }
+        Debug.Log("Eating!!!");
+        player.hunger = 100;
+        player.MaxHunger();
     }
-
 }

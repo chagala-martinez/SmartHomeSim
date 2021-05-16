@@ -5,16 +5,20 @@ using UnityEngine;
 public class Player
 {
     private int health;
-    private int food;
-    private int play;
-    private int clean;
+    private int hygiene;
+    private int fun;
+    private int energy;
+    private int hunger;
+    private int bladder;
 
-    public Player(int health, int food, int play, int clean)
+    public Player(int health, int hygiene, int fun, int energy, int hunger, int bladder)
     {
         this.health = health;
-        this.food = food;
-        this.play = play;
-        this.clean = clean;
+        this.hygiene = hygiene;
+        this.fun = fun;
+        this.energy = energy;
+        this.hunger = hunger;
+        this.bladder = bladder;
     }
 
     public int GetHealth()
@@ -22,19 +26,29 @@ public class Player
         return this.health;
     }
 
-    public int GetFood()
+    public int GetHygiene()
     {
-        return this.food;
+        return this.hygiene;
     }
 
-    public int GetPlay()
+    public int GetFun()
     {
-        return this.play;
+        return this.fun;
     }
 
-    public int GetClean()
+    public int GetEnergy()
     {
-        return this.clean;
+        return this.energy;
+    }
+
+    public int GetHunger()
+    {
+        return this.hunger;
+    }
+
+    public int GetBladder()
+    {
+        return this.bladder;
     }
 
     public void SetHealth(int health)
@@ -42,22 +56,32 @@ public class Player
         this.health = health;
     }
 
-    public void SetFood(int food)
+    public void SetHygiene(int hygiene)
     {
-        this.food = food;
+        this.hygiene = hygiene;
     }
 
-    public void SetPlay(int play)
+    public void SetFun(int fun)
     {
-        this.play = play;
+        this.fun = fun;
     }
 
-    public void SetClean(int clean)
+    public void SetEnergy(int energy)
     {
-        this.clean = clean;
+        this.energy = energy;
     }
 
-    public void ModifyHealth(bool add)
+    public void SetHunger(int hunger)
+    {
+        this.hunger = hunger;
+    }
+
+    public void SetBladder(int bladder)
+    {
+        this.bladder = bladder;
+    }
+
+    public void UpdateHealth(bool add)
     {
         if(health < 100 && add)
         {
@@ -71,45 +95,74 @@ public class Player
             health = 0;
     }
 
-    public void ModifyFood(bool add)
+    public void UpdateHygiene(bool add)
     {
-        if(food < 100 && add)
+        if(hygiene < 100 && add)
         {
-            food += 5;
+            hygiene += 5;
         }
-        else if(food > 20 && !add)
+        else if(hygiene > 15 && !add)
         {
-            food -= 25;
+            hygiene -= 20;
         }
-        else if(food <= 20 && !add)
-            food = 0;
+        else if(hygiene <= 15 && !add)
+            hygiene = 0;
     }
 
-    public void ModifyPlay(bool add)
+    public void UpdateHunger(bool add)
     {
-        if(play < 100 && add)
+        if(hunger < 100 && add)
         {
-            play += 5;
+            hunger += 5;
         }
-        else if(play > 20 && !add)
+        else if(hunger > 20 && !add)
         {
-            play -= 25;
+            hunger -= 25;
         }
-        else if(play <= 20 && !add)
-            play = 0;
+        else if(hunger <= 20 && !add)
+            hunger = 0;
     }
 
-    public void ModifyClean(bool add)
+    public void UpdateFun(bool add)
     {
-        if(clean < 100 && add)
+        if(fun < 100 && add)
         {
-            clean += 5;
+            fun += 5;
         }
-        else if(clean > 15 && !add)
+        else if(fun > 20 && !add)
         {
-            clean -= 20;
+            fun -= 25;
         }
-        else if(clean <= 15 && !add)
-            clean = 0;
+        else if(fun <= 20 && !add)
+            fun = 0;
     }
+
+    public void UpdateEnergy(bool add)
+    {
+        if(energy < 100 && add)
+        {
+            energy += 5;
+        }
+        else if(energy > 20 && !add)
+        {
+            energy -= 25;
+        }
+        else if(energy <= 20 && !add)
+            energy = 0;
+    }
+
+    public void UpdateBladder(bool add)
+    {
+        if(bladder < 100 && add)
+        {
+            bladder += 5;
+        }
+        else if(bladder > 20 && !add)
+        {
+            bladder -= 25;
+        }
+        else if(bladder <= 20 && !add)
+            bladder = 0;
+    }
+    
 }
