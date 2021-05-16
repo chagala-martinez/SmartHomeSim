@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TVObject : Interactable
+public class BladderObject : Interactable
 {
-    public bool isOn = false;
-    public GameControl player;
+    GameControl player;
 
     // Start is called before the first frame update
     void Start()
@@ -16,16 +15,14 @@ public class TVObject : Interactable
     // Update is called once per frame
     void Update()
     {
-        
+        if(isInsideZone && Input.GetMouseButtonDown(1))
+            Interact();
     }
 
-    void OnMouseDown()
+    public override void Interact()
     {
-        if(isInsideZone)
-        {
-            Debug.Log("TV");
-            player.play = 100;
-            player.MaxPlay();
-        }
+        Debug.Log("Poop!!!");
+        player.bladder = 100;
+        player.MaxBladder();
     }
 }

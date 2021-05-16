@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodObject : Interactable
+public class FunObject : Interactable
 {
+    public bool isOn = false;
     public GameControl player;
 
     // Start is called before the first frame update
@@ -15,16 +16,14 @@ public class FoodObject : Interactable
     // Update is called once per frame
     void Update()
     {
-        
+        if(isInsideZone && Input.GetMouseButtonDown(1))
+            Interact();
     }
 
-    void OnMouseDown()
+    public override void Interact()
     {
-        if(isInsideZone)            //declarado en Interactable
-        {
-            Debug.Log("Food");
-            player.food = 100;
-            player.MaxFood();
-        }
+        Debug.Log("Watching TV!!!");
+        player.fun = 100;
+        player.MaxFun();
     }
 }

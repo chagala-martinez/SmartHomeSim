@@ -4,48 +4,32 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public bool isInsideZone = false;
+    public bool isInsideZone;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isInsideZone = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isInsideZone && Input.GetMouseButtonDown(1))
-        {
-            Interact();
-            Debug.Log("interact");
-        }
-
-    }
-
-    private void OnMouseDown() {         //OnMazda
-        Interact();
-        Debug.Log("Interaccion OnMouseDown");
+        
     }
 
     //Is called when the collider other enters the trigger
     //<param name ="other">The other Collider involved in this collision.</param>
-     void OnTriggerEnter(Collider other) {
-        if(!other.CompareTag("Player"))
-        {
-            return;
-        }
-        isInsideZone = true;
-        //Debug.Log("Inside Zone");
+    void OnTriggerEnter(Collider obj)
+    {
+        if(obj.tag == "Player")
+            isInsideZone = true;
     }
 
-    void OnTriggerExit(Collider other) {
-        if(!other.CompareTag("Player"))
-        {
-            return;
-        }
-        isInsideZone = false;
-        //Debug.Log("Outside Zone");
+    void OnTriggerExit(Collider obj)
+    {
+        if(obj.tag == "Player")
+            isInsideZone = false;
     }
 
     public virtual void Interact()

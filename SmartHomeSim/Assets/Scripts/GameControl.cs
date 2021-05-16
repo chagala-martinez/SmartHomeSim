@@ -4,25 +4,34 @@ using UnityEngine;
 
 public class GameControl : MonoBehaviour
 {
-    public float timerHealth = 0f;
-    public float timerFood = 0f;
-    public float timerPlay = 0f;
-    public float timerClean = 0f;
-    private float maxTimeHealth = 5f; //5
-    private float maxTimeFood = 5f; //15
-    private float maxTimePlay = 5f; //30
-    private float maxTimeClean = 5f; //20
     public int health = 100;
-    public int food = 100;
-    public int play = 100;
-    public int clean = 100;
+    public int hygiene = 100;
+    public int hunger = 100;
+    public int fun = 100;
+    public int energy = 100;
+    public int bladder = 100;
+
+    public float timerHealth = 0f;
+    public float timerHygiene = 0f;
+    public float timerHunger = 0f;
+    public float timerFun = 0f;
+    public float timerEnergy = 0f;
+    public float timerBladder = 0f;
+
+    private float maxTimeHealth = 5f; //5
+    private float maxTimeHygiene = 5f; //20
+    private float maxTimeHunger = 5f; //15
+    private float maxTimeFun = 5f; //30
+    private float maxTimeEnergy = 5f;
+    private float maxTimeBladder = 5f;
+    
 
     Player player;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = new Player(health, food, play, clean);
+        player = new Player(health, hygiene, fun, energy, hunger, bladder);
     }
 
     // Update is called once per frame
@@ -36,55 +45,81 @@ public class GameControl : MonoBehaviour
     {
         if((timerHealth += Time.deltaTime) >= maxTimeHealth)
         {
-            player.ModifyHealth(false);
+            player.UpdateHealth(false);
             health = player.GetHealth();
             timerHealth = 0f;
         }
 
-        if((timerFood += Time.deltaTime) >= maxTimeFood)
+        if((timerHygiene += Time.deltaTime) >= maxTimeHygiene)
         {
-            player.ModifyFood(false);
-            food = player.GetFood();
-            timerFood = 0f;
+            player.UpdateHygiene(false);
+            hygiene = player.GetHygiene();
+            timerHygiene = 0f;
         }
 
-        if((timerPlay += Time.deltaTime) >= maxTimePlay)
+        if((timerHunger += Time.deltaTime) >= maxTimeHunger)
         {
-            player.ModifyPlay(false);
-            play = player.GetPlay();
-            timerPlay = 0f;
+            player.UpdateHunger(false);
+            hunger = player.GetHunger();
+            timerHunger = 0f;
         }
 
-        if((timerClean += Time.deltaTime) >= maxTimeClean)
+        if((timerFun += Time.deltaTime) >= maxTimeFun)
         {
-            player.ModifyClean(false);
-            clean = player.GetClean();
-            timerClean = 0f;
+            player.UpdateFun(false);
+            fun = player.GetFun();
+            timerFun = 0f;
         }
+
+        if((timerEnergy += Time.deltaTime) >= maxTimeEnergy)
+        {
+            player.UpdateEnergy(false);
+            energy = player.GetEnergy();
+            timerEnergy = 0f;
+        }
+
+        if((timerBladder += Time.deltaTime) >= maxTimeBladder)
+        {
+            player.UpdateBladder(false);
+            bladder = player.GetBladder();
+            timerBladder = 0f;
+        }
+        
     }
 
     private void CheckStatus()
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            player.ModifyHealth(true);
+            player.UpdateHealth(true);
             health = player.GetHealth();
         }
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            player.ModifyFood(true);
-            food = player.GetFood();
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            player.ModifyPlay(true);
-            play = player.GetPlay();
+            player.UpdateEnergy(true);
+            energy = player.GetEnergy();
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            player.ModifyClean(true);
-            clean = player.GetClean();
+            player.UpdateHygiene(true);
+            hygiene = player.GetHygiene();
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            player.UpdateHunger(true);
+            hunger = player.GetHunger();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            player.UpdateFun(true);
+            fun = player.GetFun();
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            player.UpdateBladder(true);
+            bladder = player.GetBladder();
+        }
+        
     }
 
     public void MaxHealth()
@@ -92,19 +127,29 @@ public class GameControl : MonoBehaviour
         player.SetHealth(100);
     }
 
-    public void MaxFood()
+    public void MaxHygiene()
     {
-        player.SetFood(100);
+        player.SetHygiene(100);
     }
 
-    public void MaxPlay()
+    public void MaxHunger()
     {
-        player.SetPlay(100);
+        player.SetHunger(100);
     }
 
-    public void MaxClean()
+    public void MaxFun()
     {
-        player.SetClean(100);
+        player.SetFun(100);
+    }
+
+    public void MaxEnergy()
+    {
+        player.SetEnergy(100);
+    }
+
+    public void MaxBladder()
+    {
+        player.SetBladder(100);
     }
     
 }
