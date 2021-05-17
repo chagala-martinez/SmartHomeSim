@@ -6,6 +6,7 @@ public class FunObject : Interactable
 {
     public bool isOn = false;
     public GameControl player;
+    public GameObject tvPlane; 
 
     // Start is called before the first frame update
     void Start()
@@ -25,5 +26,7 @@ public class FunObject : Interactable
         Debug.Log("Watching TV!!!");
         player.fun = 100;
         player.MaxFun();
+
+        tvPlane.SetActive(!tvPlane.activeSelf); //activa o desactiva TV
     }
 }
