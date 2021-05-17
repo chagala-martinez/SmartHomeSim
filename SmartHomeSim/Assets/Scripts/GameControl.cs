@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class GameControl : MonoBehaviour
 {
-    public int health = 100;
-    public int hygiene = 100;
+    public int health = 0;
+    public int hygiene = 0;
     public int hunger = 100;
-    public int fun = 100;
-    public int energy = 100;
-    public int bladder = 100;
+    public int fun = 0;
+    public int energy = 0;
+    public int bladder = 0;
 
-    public float timerHealth = 0f;
-    public float timerHygiene = 0f;
-    public float timerHunger = 0f;
-    public float timerFun = 0f;
-    public float timerEnergy = 0f;
-    public float timerBladder = 0f;
+    private float timerHealth = 0f;
+    private float timerHygiene = 0f;
+    private float timerHunger = 0f;
+    private float timerFun = 0f;
+    private float timerEnergy = 0f;
+    private float timerBladder = 0f;
 
-    private float maxTimeHealth = 5f; //5
-    private float maxTimeHygiene = 5f; //20
-    private float maxTimeHunger = 5f; //15
-    private float maxTimeFun = 5f; //30
-    private float maxTimeEnergy = 5f;
-    private float maxTimeBladder = 5f;
-    
+    private float maxTimeHealth = 5f; // Pendiente
+    private float maxTimeHygiene = 2.7f; // 3 veces - 4.5 minutos
+    private float maxTimeHunger = 1.2f; // 3 veces  - 2 minutos
+    private float maxTimeFun = 2.1f; // 5 veces     - 3.5 minutos
+    private float maxTimeEnergy = 2.4f; // 1 vez    - 4 minutos
+    private float maxTimeBladder = 1.8f; // 2 veces - 3 minutos
 
     Player player;
 
@@ -37,50 +36,51 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckStatus();
+        //CheckStatus();
         CheckTime();
+        
     }
 
     private void CheckTime()
     {
         if((timerHealth += Time.deltaTime) >= maxTimeHealth)
         {
-            player.UpdateHealth(false);
+            player.UpdateHealth();
             health = player.GetHealth();
             timerHealth = 0f;
         }
 
         if((timerHygiene += Time.deltaTime) >= maxTimeHygiene)
         {
-            player.UpdateHygiene(false);
+            player.UpdateHygiene();
             hygiene = player.GetHygiene();
             timerHygiene = 0f;
         }
 
         if((timerHunger += Time.deltaTime) >= maxTimeHunger)
         {
-            player.UpdateHunger(false);
+            player.UpdateHunger();
             hunger = player.GetHunger();
             timerHunger = 0f;
         }
 
         if((timerFun += Time.deltaTime) >= maxTimeFun)
         {
-            player.UpdateFun(false);
+            player.UpdateFun();
             fun = player.GetFun();
             timerFun = 0f;
         }
 
         if((timerEnergy += Time.deltaTime) >= maxTimeEnergy)
         {
-            player.UpdateEnergy(false);
+            player.UpdateEnergy();
             energy = player.GetEnergy();
             timerEnergy = 0f;
         }
 
         if((timerBladder += Time.deltaTime) >= maxTimeBladder)
         {
-            player.UpdateBladder(false);
+            player.UpdateBladder();
             bladder = player.GetBladder();
             timerBladder = 0f;
         }
@@ -91,32 +91,32 @@ public class GameControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            player.UpdateHealth(true);
+            player.UpdateHealth();
             health = player.GetHealth();
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            player.UpdateEnergy(true);
+            player.UpdateEnergy();
             energy = player.GetEnergy();
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            player.UpdateHygiene(true);
+            player.UpdateHygiene();
             hygiene = player.GetHygiene();
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
-            player.UpdateHunger(true);
+            player.UpdateHunger();
             hunger = player.GetHunger();
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            player.UpdateFun(true);
+            player.UpdateFun();
             fun = player.GetFun();
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
-            player.UpdateBladder(true);
+            player.UpdateBladder();
             bladder = player.GetBladder();
         }
         

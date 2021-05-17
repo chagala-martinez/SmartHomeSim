@@ -46,7 +46,7 @@ public class MenuController : MonoBehaviour
         if(Input.GetKeyDown("space"))
             statsUI.SetActive(!statsUI.activeSelf);
 
-        if(player.health == 0)
+        if(player.health <= 0)
         {
             statsUI.SetActive(false);
             buttonMenuUI.SetActive(false);

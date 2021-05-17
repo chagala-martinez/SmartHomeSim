@@ -81,88 +81,50 @@ public class Player
         this.bladder = bladder;
     }
 
-    public void UpdateHealth(bool add)
+    public void UpdateHealth()
     {
-        if(health < 100 && add)
+        if(health > 0)
         {
-            health += 5;
+            if(hunger == 0)
+            health -= 5;
+            if(hygiene == 0)
+                health-=2;
+            if(energy == 0)
+                health -= 5;
+            if(fun == 0)
+                health -= 1;
+            if(bladder == 0)
+                health -=3;
         }
-        else if(health > 15 && !add)
-        {
-            health -= 20;
-        }
-        else if(health <= 15 && !add)
-            health = 0;
     }
 
-    public void UpdateHygiene(bool add)
+    public void UpdateHygiene()
     {
-        if(hygiene < 100 && add)
-        {
-            hygiene += 5;
-        }
-        else if(hygiene > 15 && !add)
-        {
-            hygiene -= 20;
-        }
-        else if(hygiene <= 15 && !add)
-            hygiene = 0;
+        if(hygiene > 0)
+            hygiene--;
     }
 
-    public void UpdateHunger(bool add)
+    public void UpdateHunger()
     {
-        if(hunger < 100 && add)
-        {
-            hunger += 5;
-        }
-        else if(hunger > 20 && !add)
-        {
-            hunger -= 25;
-        }
-        else if(hunger <= 20 && !add)
-            hunger = 0;
+        if(hunger > 0)
+            hunger--;
     }
 
-    public void UpdateFun(bool add)
+    public void UpdateFun()
     {
-        if(fun < 100 && add)
-        {
-            fun += 5;
-        }
-        else if(fun > 20 && !add)
-        {
-            fun -= 25;
-        }
-        else if(fun <= 20 && !add)
-            fun = 0;
+        if(fun > 0)
+            fun--;
     }
 
-    public void UpdateEnergy(bool add)
+    public void UpdateEnergy()
     {
-        if(energy < 100 && add)
-        {
-            energy += 5;
-        }
-        else if(energy > 20 && !add)
-        {
-            energy -= 25;
-        }
-        else if(energy <= 20 && !add)
-            energy = 0;
+        if(energy > 0)
+            energy--;
     }
 
-    public void UpdateBladder(bool add)
+    public void UpdateBladder()
     {
-        if(bladder < 100 && add)
-        {
-            bladder += 5;
-        }
-        else if(bladder > 20 && !add)
-        {
-            bladder -= 25;
-        }
-        else if(bladder <= 20 && !add)
-            bladder = 0;
+        if(bladder > 0)
+            bladder--;
     }
-    
 }
