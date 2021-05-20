@@ -13,14 +13,27 @@ public class CameraController : MonoBehaviour
 
     public float yawSpeed = 100f;
 
+    public float yawSpeedAndroid = 200f;
+
     private float currentZoom = 10f;
     private float currentYaw = 0f;
 
-    void Update() {
+    void Start()
+    {
+        
+    }
+
+    void Update()
+    {
         currentZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
         currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
 
         currentYaw -= Input.GetAxis("Horizontal") * yawSpeed * Time.deltaTime;
+
+        if(Input.touchCount == 4)
+        {
+            currentYaw -= Input.touchCount * yawSpeedAndroid * Time.deltaTime;
+        }
     }
 
     void LateUpdate()
@@ -30,4 +43,5 @@ public class CameraController : MonoBehaviour
 
         transform.RotateAround(target.position, Vector3.up, currentYaw);
     }
+    
 }

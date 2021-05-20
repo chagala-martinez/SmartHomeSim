@@ -5,28 +5,25 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-    public GameObject statsUI;
-    public GameObject buttonMenuUI;
     public GameObject pauseMenuUI;
+    public GameObject statsUI;
     public GameObject gameOverUI;
+    public GameObject controlMenuUI;
+
     GameControl player;
 
     public void Pause()
     {
+        controlMenuUI.SetActive(false);
         pauseMenuUI.SetActive(true);
-        statsUI.SetActive(false);
-        buttonMenuUI.SetActive(false);
-        gameOverUI.SetActive(false);
 
         Time.timeScale = 0f;
     }
 
     public void Resume()
     {
-        statsUI.SetActive(true);
-        buttonMenuUI.SetActive(true);
+        controlMenuUI.SetActive(true);
         pauseMenuUI.SetActive(false);
-        gameOverUI.SetActive(false);
         
         Time.timeScale = 1f;
     }
@@ -48,9 +45,7 @@ public class MenuController : MonoBehaviour
 
         if(player.health <= 0)
         {
-            statsUI.SetActive(false);
-            buttonMenuUI.SetActive(false);
-            pauseMenuUI.SetActive(false);
+            controlMenuUI.SetActive(false);
             gameOverUI.SetActive(true);
             Time.timeScale = 0f;
         }
