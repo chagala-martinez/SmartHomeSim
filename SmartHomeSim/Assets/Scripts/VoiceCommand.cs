@@ -29,7 +29,7 @@ using IBM.Cloud.SDK.DataTypes;
 
 namespace IBM.Watsson.Examples
 {
-    public class ExampleStreaming : MonoBehaviour
+    public class VoiceCommand : MonoBehaviour
     {
         #region PLEASE SET THESE VARIABLES IN THE INSPECTOR
         [Space(10)]
@@ -50,6 +50,11 @@ namespace IBM.Watsson.Examples
         private string _recognizeModel;
         #endregion
 
+        public AudioPlayer m_alexaObject;
+        public GameObject dinnerLight;
+        public GameObject bedroomLight;
+        public GameObject tv;
+
         private int _recordingRoutine = 0;
         private string _microphoneID = null;
         private AudioClip _recording = null;
@@ -62,7 +67,7 @@ namespace IBM.Watsson.Examples
         {
             LogSystem.InstallDefaultReactors();
             Runnable.Run(CreateService());
-            Debug.Log("Iniciando..");
+            Debug.Log("Iniciando...");
         }
 
         private IEnumerator CreateService()
@@ -214,6 +219,30 @@ namespace IBM.Watsson.Examples
                         //ResultsField.text = text;
 
                         Debug.Log("Comando: " + text);
+
+                        if(text.ToLower().Contains("música") || text.ToLower().Contains("music"))
+                        {
+                            Debug.Log("-> Reproduciendo...");
+                            m_alexaObject.Interact();
+                        }
+
+                        if(text.ToLower().Contains("comedor") || text.ToLower().Contains("dinner"))
+                        {
+                            Debug.Log("-> cambiando luz del comedor...");
+                            dinnerLight.SetActive(!dinnerLight.activeSelf);
+                        }
+
+                        if(text.ToLower().Contains("cuarto") || text.ToLower().Contains("bedroom"))
+                        {
+                            Debug.Log("-> cambiando luz del cuarto...");
+                            bedroomLight.SetActive(!bedroomLight.activeSelf);
+                        }
+
+                        if(text.ToLower().Contains("televisión") || text.ToLower().Contains("television"))
+                        {
+                            Debug.Log("-> cambiando televisión...");
+                            tv.SetActive(!tv.activeSelf);
+                        }
                     }
 
                     if (res.keywords_result != null && res.keywords_result.keyword != null)
