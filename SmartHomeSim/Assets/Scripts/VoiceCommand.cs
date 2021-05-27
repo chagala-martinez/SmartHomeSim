@@ -228,19 +228,19 @@ namespace IBM.Watsson.Examples
                             m_alexaObject.Interact();
                         }
 
-                        if(text.ToLower().Contains("uno") || text.ToLower().Contains("dinner"))
+                        if(text.ToLower().Contains("comedor") || text.ToLower().Contains("dinner"))
                         {
                             Debug.Log("-> cambiando luz del comedor...");
                             dinnerLight.VoiceSetLights();
                         }
 
-                        if(text.ToLower().Contains("dos") || text.ToLower().Contains("bedroom"))
+                        if(text.ToLower().Contains("cuarto") || text.ToLower().Contains("bedroom"))
                         {
                             Debug.Log("-> cambiando luz del cuarto...");
                             bedroomLight.VoiceSetLights();
                         }
 
-                        if(text.ToLower().Contains("television") || text.ToLower().Contains("television"))
+                        if(text.ToLower().Contains("televisión") || text.ToLower().Contains("television"))
                         {
                             Debug.Log("-> cambiando televisión...");
                             tv.VoiceSetTV();
