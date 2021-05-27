@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="health" size="10.000000 7.396166" />
+    <ImageTarget name="tv" size="10.000000 11.627907" />
+    <ImageTarget name="bed" size="10.000000 10.000000" />
+    <ImageTarget name="bathtub" size="10.000000 10.000000" />
+    <ImageTarget name="food" size="10.000000 10.987804" />
+    <ImageTarget name="toilet" size="10.000000 9.909910" />
+  </Tracking>
+</QCARConfig>
