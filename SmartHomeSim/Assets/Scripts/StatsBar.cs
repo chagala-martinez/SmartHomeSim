@@ -12,7 +12,7 @@ public class StatsBar : MonoBehaviour
     public Image hygieneBar;
     public Image bladderBar;
 
-    private float health;
+    public float health;
     private float hygiene;
     private float hunger;
     private float fun;

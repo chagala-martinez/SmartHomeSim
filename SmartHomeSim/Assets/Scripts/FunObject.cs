@@ -19,7 +19,7 @@ public class FunObject : Interactable
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if(isOn && isInsideZone)
         {
@@ -58,5 +58,11 @@ public class FunObject : Interactable
             tvPlane.SetActive(true);
         else
             tvPlane.SetActive(false);
+    }
+
+    public void VoiceSetTV()
+    {
+        tvPlane.SetActive(!tvPlane.activeSelf);
+        Interact();
     }
 }

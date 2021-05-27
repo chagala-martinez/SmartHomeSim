@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameControl : MonoBehaviour
 {
-    public int health = 0;
-    public int hygiene = 0;
+    public int health = 100;
+    public int hygiene = 100;
     public int hunger = 100;
-    public int fun = 0;
-    public int energy = 0;
-    public int bladder = 0;
+    public int fun = 100;
+    public int energy = 100;
+    public int bladder = 100;
 
     private float timerHealth = 0f;
     private float timerHygiene = 0f;
