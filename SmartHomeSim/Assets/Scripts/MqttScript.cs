@@ -16,12 +16,15 @@ public class MqttScript : MonoBehaviour {
 	private MqttClient client;
 
 	public Text displayText;
-	public GameObject dinnerLightObject;
-    public GameObject bedroomLightObject;
+	public Lights dinnerLightObject;
+	//public GameObject dinnerLightObject;
+    public Lights bedroomLightObject;
 	string lastMessage;
 
 	volatile bool dinnerLight = false;
+	volatile bool lastDinnerLight = false;
     volatile bool bedroomLight = false;
+	volatile bool lastBedroomLight = false;
 
 	// Use this for initialization
 	void Start () {
@@ -47,23 +50,27 @@ public class MqttScript : MonoBehaviour {
 			if(lastMessage.Equals("dinner on"))
 			{
 				Debug.Log("Recibido: On");
+				lastDinnerLight = dinnerLight;
                 dinnerLight = true;
 			}
 			else if(lastMessage.Equals("dinner off"))
 			{
 				Debug.Log("Recibido: off");
+				lastDinnerLight = dinnerLight;
                 dinnerLight = false;
 			}
             
             if(lastMessage.Equals("bedroom on"))
 			{
 				Debug.Log("Recibido: On");
+				lastBedroomLight = bedroomLight;
                 bedroomLight = true;
                 
 			}
 			else if(lastMessage.Equals("bedroom off"))
 			{
 				Debug.Log("Recibido: off");
+				lastBedroomLight = bedroomLight;
                 bedroomLight = false;
 			}
 		}
@@ -71,23 +78,27 @@ public class MqttScript : MonoBehaviour {
 
 	void Update()
 	{
-		displayText.text = lastMessage;
-		if (dinnerLight != dinnerLightObject.activeSelf)
-			dinnerLightObject.SetActive(dinnerLight);
-        if(bedroomLight != bedroomLightObject.activeSelf)
-            bedroomLightObject.SetActive(bedroomLight);
+		if(lastDinnerLight != dinnerLight)
+			dinnerLightObject.MQTTSetLights(dinnerLight);
+		if(lastBedroomLight != bedroomLight)
+			bedroomLightObject.MQTTSetLights(bedroomLight);
+		// displayText.text = lastMessage;
+		// if (dinnerLight != dinnerLightObject.activeSelf)
+		// 	dinnerLightObject.SetActive(dinnerLight);
+        // if(bedroomLight != bedroomLightObject.activeSelf)
+        //     bedroomLightObject.SetActive(bedroomLight);
 	}
 
-	void OnGUI(){
-		if ( GUI.Button (new Rect (20,40,80,20), "Level 1")) {
-			Debug.Log("sending...");
-			client.Publish(mainTopic, System.Text.Encoding.UTF8.GetBytes("lightOn"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
-			Debug.Log("sent");
-		}
-	}
+	// void OnGUI(){
+	// 	if ( GUI.Button (new Rect (20,40,80,20), "Level 1")) {
+	// 		Debug.Log("sending...");
+	// 		client.Publish(mainTopic, System.Text.Encoding.UTF8.GetBytes("lightOn"), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
+	// 		Debug.Log("sent");
+	// 	}
+	// }
 
-	void OnApplicationQuit()
-	{
-		client.Disconnect();
-	}
+	// void OnApplicationQuit()
+	// {
+	// 	client.Disconnect();
+	// }
 }

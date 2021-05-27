@@ -26,6 +26,7 @@ using IBM.Cloud.SDK.Authentication;
 using IBM.Cloud.SDK.Authentication.Iam;
 using IBM.Cloud.SDK.Utilities;
 using IBM.Cloud.SDK.DataTypes;
+using TMPro;
 
 namespace IBM.Watsson.Examples
 {
@@ -37,7 +38,8 @@ namespace IBM.Watsson.Examples
         [SerializeField]
         private string _serviceUrl;
         [Tooltip("Text field to display the results of streaming.")]
-        public Text ResultsField;
+        //public Text ResultsField;
+        [SerializeField] TextMeshProUGUI ResultsField;
         [Header("IAM Authentication")]
         [Tooltip("The IAM apikey.")]
         [SerializeField]
@@ -51,9 +53,9 @@ namespace IBM.Watsson.Examples
         #endregion
 
         public AudioPlayer m_alexaObject;
-        public GameObject dinnerLight;
-        public GameObject bedroomLight;
-        public GameObject tv;
+        public Lights dinnerLight;
+        public Lights bedroomLight;
+        public FunObject tv;
 
         private int _recordingRoutine = 0;
         private string _microphoneID = null;
@@ -216,7 +218,7 @@ namespace IBM.Watsson.Examples
                     {
                         string text = string.Format("{0} ({1}, {2:0.00})\n", alt.transcript, res.final ? "Final" : "Interim", alt.confidence);
                         Log.Debug("ExampleStreaming.OnRecognize()", text);
-                        //ResultsField.text = text;
+                        ResultsField.text = alt.transcript;
 
                         Debug.Log("Comando: " + text);
 
@@ -226,22 +228,22 @@ namespace IBM.Watsson.Examples
                             m_alexaObject.Interact();
                         }
 
-                        if(text.ToLower().Contains("comedor") || text.ToLower().Contains("dinner"))
+                        if(text.ToLower().Contains("uno") || text.ToLower().Contains("dinner"))
                         {
                             Debug.Log("-> cambiando luz del comedor...");
-                            dinnerLight.SetActive(!dinnerLight.activeSelf);
+                            dinnerLight.VoiceSetLights();
                         }
 
-                        if(text.ToLower().Contains("cuarto") || text.ToLower().Contains("bedroom"))
+                        if(text.ToLower().Contains("dos") || text.ToLower().Contains("bedroom"))
                         {
                             Debug.Log("-> cambiando luz del cuarto...");
-                            bedroomLight.SetActive(!bedroomLight.activeSelf);
+                            bedroomLight.VoiceSetLights();
                         }
 
-                        if(text.ToLower().Contains("televisión") || text.ToLower().Contains("television"))
+                        if(text.ToLower().Contains("television") || text.ToLower().Contains("television"))
                         {
                             Debug.Log("-> cambiando televisión...");
-                            tv.SetActive(!tv.activeSelf);
+                            tv.VoiceSetTV();
                         }
                     }
 
@@ -264,9 +266,15 @@ namespace IBM.Watsson.Examples
                     }
                 }
             }
+            //StartCoroutine(ExampleCoroutine());
             StopRecording();
             _service.StopListening();
             Debug.Log("Deteniendo...");
+        }
+
+        IEnumerator ExampleCoroutine()
+        {
+            yield return new WaitForSeconds(3);
         }
 
         private void OnRecognizeSpeaker(SpeakerRecognitionEvent result)
